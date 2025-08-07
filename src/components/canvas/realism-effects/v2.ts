@@ -362,7 +362,7 @@ class TemporalReprojectPass extends Pass {
 
     if (this.overrideAccumulatedTextures.length === 0) {
       this.framebufferTexture.needsUpdate = true;
-      renderer.copyTextureToTexture(this.renderTarget.texture, this.framebufferTexture);
+      renderer.copyTextureToTexture(this.renderTarget.textures[0], this.framebufferTexture);
 
       // renderer.copyFramebufferToTexture(tmpVec2, this.framebufferTexture);
     } // save last transformations
@@ -1689,7 +1689,8 @@ class VelocityDepthNormalPass extends Pass {
     } = this._scene;
     this._scene.background = backgroundColor;
     renderer.setRenderTarget(this.renderTarget);
-    renderer.copyFramebufferToTexture(zeroVec2, this.lastVelocityTexture);
+    renderer.copyTextureToTexture(this.renderTarget.textures[0], this.lastVelocityTexture);
+    //renderer.copyFramebufferToTexture(zeroVec2, this.lastVelocityTexture);
     renderer.render(this._scene, this._camera);
     this._scene.background = background;
     this.unsetVelocityDepthNormalMaterialInScene();
