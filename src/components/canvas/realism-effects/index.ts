@@ -1,3 +1,5 @@
+"use client"
+
 import { Pass, Effect, RenderPass, Selection, NormalPass } from 'postprocessing'
 import { DataTexture, RGBAFormat, FloatType, ShaderChunk, ShaderLib, UniformsUtils, WebGLMultipleRenderTargets, ShaderMaterial, GLSL3, NoBlending, Uniform, Vector2, Matrix4, Vector3, Clock, Quaternion, LinearFilter, HalfFloatType, FramebufferTexture, TextureLoader, NearestFilter, RepeatWrapping, NoColorSpace, WebGLRenderTarget, ClampToEdgeWrapping, LinearMipMapLinearFilter, EquirectangularReflectionMapping, Color, Matrix3, TangentSpaceNormalMap, RedFormat, Source, Texture, NoToneMapping, PerspectiveCamera, SRGBColorSpace, DepthTexture } from 'three'
 import _classPrivateFieldLooseBase from '@babel/runtime/helpers/esm/classPrivateFieldLooseBase'
