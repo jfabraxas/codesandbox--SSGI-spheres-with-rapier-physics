@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "clean:install": "rm -rf node_modules .next"
+    "clean:install": "rm -rf node_modules .next && npm install"
   },
   "dependencies": {
     "@react-three/drei": "9.78.0",
