@@ -1,7 +1,7 @@
 "use client"
   
 import { Pass, Effect, RenderPass, Selection, NormalPass } from 'postprocessing';
-import { ShaderChunk, ShaderLib, UniformsUtils, ShaderMaterial, Uniform, Vector2, Matrix4, Vector3, NoBlending, GLSL3, Clock, Quaternion, WebGLRenderTarget, NearestFilter, FramebufferTexture, LinearFilter, WebGLRenderTarget, FloatType, DataTexture, RGBAFormat, ClampToEdgeWrapping, LinearMipMapLinearFilter, EquirectangularReflectionMapping, TextureLoader, RepeatWrapping, NoColorSpace, MeshPhysicalMaterial, Color, DepthTexture, RedFormat, Matrix3, HalfFloatType, SRGBColorSpace } from 'three';
+import { ShaderChunk, ShaderLib, UniformsUtils, ShaderMaterial, Uniform, Vector2, Matrix4, Vector3, NoBlending, GLSL3, Clock, Quaternion, NearestFilter, FramebufferTexture, LinearFilter, WebGLRenderTarget, FloatType, DataTexture, RGBAFormat, ClampToEdgeWrapping, LinearMipMapLinearFilter, EquirectangularReflectionMapping, TextureLoader, RepeatWrapping, NoColorSpace, MeshPhysicalMaterial, Color, DepthTexture, RedFormat, Matrix3, HalfFloatType, SRGBColorSpace } from 'three';
 
 // from: https://news.ycombinator.com/item?id=17876741
 
@@ -1949,9 +1949,11 @@ class PoissonDenoisePass extends Pass {
       // using HalfFloatType as FloatType with bilinear filtering isn't supported on some Apple devices
       depthBuffer: false
     };
-    this.renderTargetA = new WebGLMultipleRenderTargets(1, 1, textureCount, renderTargetOptions);
+    this.renderTargetA = new WebGLRenderTarget(1, 1, { ...renderTargetOptions, count: textureCount });
+this.renderTargetB = new WebGLRenderTarget(1, 1, { ...renderTargetOptions, count: textureCount });
+    /*this.renderTargetA = new WebGLMultipleRenderTargets(1, 1, textureCount, renderTargetOptions);
     this.renderTargetB = new WebGLMultipleRenderTargets(1, 1, textureCount, renderTargetOptions); // give the textures of renderTargetA and renderTargetB names
-
+    */
     this.renderTargetB.texture[0].name = "PoissonDenoisePass." + (isTextureSpecular[0] ? "specular" : "diffuse");
 
     if (textureCount > 1) {
