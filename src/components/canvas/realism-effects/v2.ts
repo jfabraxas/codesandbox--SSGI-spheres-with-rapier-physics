@@ -362,7 +362,9 @@ class TemporalReprojectPass extends Pass {
 
     if (this.overrideAccumulatedTextures.length === 0) {
       this.framebufferTexture.needsUpdate = true;
-      renderer.copyFramebufferToTexture(tmpVec2, this.framebufferTexture);
+      renderer.copyTextureToTexture(this.renderTarget.texture, this.framebufferTexture);
+
+      // renderer.copyFramebufferToTexture(tmpVec2, this.framebufferTexture);
     } // save last transformations
 
 
