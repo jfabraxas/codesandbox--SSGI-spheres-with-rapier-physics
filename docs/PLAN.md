@@ -20,8 +20,8 @@ This document outlines the steps to migrate the current React application to a N
 
 ### 2. Initialize Next.js and TypeScript Configuration
 
-*   **Action**: After updating `package.json`, run `npm install` (or `yarn install`) in your terminal to install the new dependencies.
-*   **Action**: Then, run `npm run dev` (or `yarn dev`). Next.js will automatically create `tsconfig.json` and `next-env.d.ts` files in your project root, configuring TypeScript for your Next.js project.
+*   **Action**: After updating `package.json`, run `pnpm install` in your terminal to install the new dependencies.
+*   **Action**: Then, run `pnpm dev`. Next.js will automatically create `tsconfig.json` and `next-env.d.ts` files in your project root, configuring TypeScript for your Next.js project.
 
 ### 3. Restructure Project Files
 
@@ -108,4 +108,3 @@ This document outlines the steps to migrate the current React application to a N
 
 *   **Note**: While `src/styles.css` will remain a global stylesheet, for any new component-specific styling, you should create CSS Module files (e.g., `MyComponent.module.css`).
 *   **Usage**: Import them into your components like `import styles from './MyComponent.module.css';` and use them as `className={styles.myClass}`.
-
