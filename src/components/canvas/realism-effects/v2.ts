@@ -244,13 +244,19 @@ class TemporalReprojectPass extends Pass {
     options = { ...defaultTemporalReprojectPassOptions,
       ...options
     };
-    this.renderTarget = new WebGLRenderTarget(width, height, { count: textureCount, format: THREE.RGBAFormat })
-    this.renderTarget = new WebGLMultipleRenderTargets(1, 1, textureCount, {
+    this.renderTarget = new WebGLRenderTarget(1, 1, {
+  count: textureCount, // The new way to specify multiple render targets
+  minFilter: NearestFilter,
+  magFilter: NearestFilter,
+  type: texture.type,
+  depthBuffer: false
+});
+    /*this.renderTarget = new WebGLMultipleRenderTargets(1, 1, textureCount, {
       minFilter: NearestFilter,
       magFilter: NearestFilter,
       type: texture.type,
       depthBuffer: false
-    });
+    });*/
     this.renderTarget.texture.forEach((texture, index) => texture.name = "TemporalReprojectPass.accumulatedTexture" + index);
     this.fullscreenMaterial = new TemporalReprojectMaterial(textureCount);
     this.fullscreenMaterial.defines.textureCount = textureCount;
