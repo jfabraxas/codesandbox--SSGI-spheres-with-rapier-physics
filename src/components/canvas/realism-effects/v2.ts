@@ -2051,7 +2051,7 @@ class Denoiser {
       neighborhoodClampIntensity: 0.5,
       ...options
     });
-    const textures = this.temporalReprojectPass.renderTarget.texture.slice(0, textureCount);
+    const textures = this.temporalReprojectPass.renderTarget.textures.slice(0, textureCount);
 
     if (this.options.denoiseMode === "full" || this.options.denoiseMode === "denoised") {
       var _options$gBufferPass;

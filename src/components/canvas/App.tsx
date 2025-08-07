@@ -58,7 +58,7 @@ export function App(props: any) {
   const [accent, click] = useReducer((state: number) => ++state % accents.length, 0)
   const connectors = useMemo(() => shuffle(accent), [accent])
   return (
-    <Canvas flat shadows onClick={click} dpr={[1, 1.5]} gl={{ antialias: false }} camera={{ position: [0, 0, 30], fov: 17.5, near: 10, far: 40 }} {...props}>
+    <Canvas flat shadows onClick={click} dpr={[1, 1.5]} gl={{ antialias: false }} camera={{ position: [0, 0, 30], fov: 17.5, near: 10, far: 40 }} >
       <color attach="background" args={['#141622']} />
       <Physics /*debug*/ timeStep="vary" gravity={[0, 0, 0]}>
         <Pointer />
