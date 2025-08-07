@@ -1,7 +1,7 @@
 "use client"
   
 import { Pass, Effect, RenderPass, Selection, NormalPass } from 'postprocessing';
-import { ShaderChunk, ShaderLib, UniformsUtils, ShaderMaterial, Uniform, Vector2, Matrix4, Vector3, NoBlending, GLSL3, Clock, Quaternion, WebGLMultipleRenderTargets, NearestFilter, FramebufferTexture, LinearFilter, WebGLRenderTarget, FloatType, DataTexture, RGBAFormat, ClampToEdgeWrapping, LinearMipMapLinearFilter, EquirectangularReflectionMapping, TextureLoader, RepeatWrapping, NoColorSpace, MeshPhysicalMaterial, Color, DepthTexture, RedFormat, Matrix3, HalfFloatType, SRGBColorSpace } from 'three';
+import { ShaderChunk, ShaderLib, UniformsUtils, ShaderMaterial, Uniform, Vector2, Matrix4, Vector3, NoBlending, GLSL3, Clock, Quaternion, WebGLRenderTarget, NearestFilter, FramebufferTexture, LinearFilter, WebGLRenderTarget, FloatType, DataTexture, RGBAFormat, ClampToEdgeWrapping, LinearMipMapLinearFilter, EquirectangularReflectionMapping, TextureLoader, RepeatWrapping, NoColorSpace, MeshPhysicalMaterial, Color, DepthTexture, RedFormat, Matrix3, HalfFloatType, SRGBColorSpace } from 'three';
 
 // from: https://news.ycombinator.com/item?id=17876741
 
@@ -244,6 +244,7 @@ class TemporalReprojectPass extends Pass {
     options = { ...defaultTemporalReprojectPassOptions,
       ...options
     };
+    this.renderTarget = new WebGLRenderTarget(width, height, { count: textureCount, format: THREE.RGBAFormat })
     this.renderTarget = new WebGLMultipleRenderTargets(1, 1, textureCount, {
       minFilter: NearestFilter,
       magFilter: NearestFilter,
