@@ -731,7 +731,7 @@ class GBufferPass extends Pass {
       magFilter: NearestFilter,
       depthBuffer: true
     });
-    this.renderTarget.texture.name = "GBufferPass.Texture";
+    this.renderTarget.textures[0].name = "GBufferPass.Texture";
     this.renderTarget.depthTexture = new DepthTexture(1, 1);
     this.renderTarget.depthTexture.type = FloatType;
     this.renderTarget.depthTexture.name = "GBufferPass.DepthTexture";
@@ -1238,7 +1238,7 @@ class SSGIPass extends Pass {
       magFilter: NearestFilter,
       depthBuffer: false
     });
-    this.renderTarget.texture.name = "SSGIPass.Texture"; // set up basic uniforms that we don't have to update
+    this.renderTarget.textures[0].name = "SSGIPass.Texture"; // set up basic uniforms that we don't have to update
 
     this.fullscreenMaterial.uniforms.cameraMatrixWorld.value = this._camera.matrixWorld;
     this.fullscreenMaterial.uniforms.viewMatrix.value = this._camera.matrixWorldInverse;
@@ -1611,7 +1611,7 @@ class VelocityDepthNormalPass extends Pass {
       minFilter: NearestFilter,
       magFilter: NearestFilter
     });
-    this.renderTarget.texture.name = "VelocityDepthNormalPass.Texture";
+    this.renderTarget.textures[0].name = "VelocityDepthNormalPass.Texture";
     this.renderTarget.depthTexture = new DepthTexture(1, 1);
     this.renderTarget.depthTexture.type = FloatType;
   }
@@ -1715,7 +1715,7 @@ class DenoiserComposePass extends Pass {
       minFilter: NearestFilter,
       magFilter: NearestFilter
     });
-    this.renderTarget.texture.name = "DenoiserComposePass.Texture";
+    this.renderTarget.textures[0].name = "DenoiserComposePass.Texture";
     let diffuseGiTexture;
     let specularGiTexture;
 
@@ -1954,10 +1954,10 @@ this.renderTargetB = new WebGLRenderTarget(1, 1, { ...renderTargetOptions, count
     /*this.renderTargetA = new WebGLMultipleRenderTargets(1, 1, textureCount, renderTargetOptions);
     this.renderTargetB = new WebGLMultipleRenderTargets(1, 1, textureCount, renderTargetOptions); // give the textures of renderTargetA and renderTargetB names
     */
-    this.renderTargetB.texture[0].name = "PoissonDenoisePass." + (isTextureSpecular[0] ? "specular" : "diffuse");
+    this.renderTargetB.textures[0].name = "PoissonDenoisePass." + (isTextureSpecular[0] ? "specular" : "diffuse");
 
     if (textureCount > 1) {
-      this.renderTargetB.texture[1].name = "PoissonDenoisePass." + (isTextureSpecular[1] ? "specular" : "diffuse");
+      this.renderTargetB.textures[1].name = "PoissonDenoisePass." + (isTextureSpecular[1] ? "specular" : "diffuse");
     }
 
     const {
@@ -2132,7 +2132,7 @@ class GBufferDebugPass extends Pass {
       minFilter: NearestFilter,
       magFilter: NearestFilter
     });
-    this.renderTarget.texture.name = "GBufferDebugPass.Texture";
+    this.renderTarget.textures[0].name = "GBufferDebugPass.Texture";
     this.fullscreenMaterial = new ShaderMaterial({
       fragmentShader:
       /* glsl */
