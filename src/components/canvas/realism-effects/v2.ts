@@ -257,7 +257,7 @@ class TemporalReprojectPass extends Pass {
       type: texture.type,
       depthBuffer: false
     });*/
-    this.renderTarget.texture.forEach((texture, index) => texture.name = "TemporalReprojectPass.accumulatedTexture" + index);
+    this.renderTarget.textures?.forEach((texture, index) => texture.name = "TemporalReprojectPass.accumulatedTexture" + index);
     this.fullscreenMaterial = new TemporalReprojectMaterial(textureCount);
     this.fullscreenMaterial.defines.textureCount = textureCount;
     if (options.dilation) this.fullscreenMaterial.defines.dilation = "";
@@ -279,7 +279,7 @@ class TemporalReprojectPass extends Pass {
     this.fullscreenMaterial.uniforms.prevCameraMatrixWorld.value = camera.matrixWorld.clone();
     this.fullscreenMaterial.uniforms.prevProjectionMatrix.value = camera.projectionMatrix.clone();
     this.fullscreenMaterial.uniforms.prevProjectionMatrixInverse.value = camera.projectionMatrixInverse.clone();
-    this.fullscreenMaterial.uniforms.velocityTexture.value = velocityDepthNormalPass.renderTarget.texture;
+    this.fullscreenMaterial.uniforms.velocityTexture.value = velocityDepthNormalPass.renderTarget.textures;
     this.fullscreenMaterial.uniforms.depthTexture.value = velocityDepthNormalPass.depthTexture;
     this.fullscreenMaterial.defines.inputType = (_indexOf = ["diffuseSpecular", "diffuse", "specular"].indexOf(options.inputType)) !== null && _indexOf !== void 0 ? _indexOf : 1;
 
@@ -325,7 +325,7 @@ class TemporalReprojectPass extends Pass {
   }
 
   get texture() {
-    return this.renderTarget.texture[0];
+    return this.renderTarget.textures[0];
   }
 
   reset() {
